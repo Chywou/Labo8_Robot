@@ -1,0 +1,16 @@
+classe Robot
+unsigned x, y, id
+static unsigned idCourant
+
+enum class Direction
+
+bool memePosition(const Robot& r)
+void deplacement()
+Direction Aleatoire()
+
+fonction
+do
+Direction
+	switch
+	Direct
+while()
