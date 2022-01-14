@@ -4,7 +4,6 @@
 
 #ifndef LABO8_ROBOT_ROBOT_H
 #define LABO8_ROBOT_ROBOT_H
-#include "Jeu.h"
 
 class Robot {
    friend class Jeu;
@@ -12,12 +11,12 @@ class Robot {
 public:
    enum class Direction {HAUT, BAS, GAUCHE, DROITE};
    Robot(unsigned x, unsigned y);
-   void deplacement(Direction direction, int distance = 1);
+   void deplacement(Direction direction, unsigned distance = 1);
    bool memeDirection(const Robot& robot) const;
 private:
    unsigned x, y;
    const unsigned id;
-   static unsigned idSuivant;
+   static unsigned idCourant;
 };
 
 

@@ -14,7 +14,7 @@ class Jeu {
 public:
    Jeu(unsigned hauteur, unsigned largeur, unsigned nbreRobot);
    unsigned generer(unsigned min, unsigned max);
-   Robot::Direction directionValide(const Robot& r, unsigned i);
+   bool directionValide(const Robot& r, Robot::Direction direction);
 private:
    const unsigned hauteur, largeur;
    std::vector<Robot> robots;
