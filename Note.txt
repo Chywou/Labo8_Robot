@@ -14,3 +14,9 @@ Direction
 	switch
 	Direct
 while()
+
+classe Jeu
+
+Question Gabi
+Taille en unsigned ou on imagine que peut être négatif un jour
+const référence sur un enum class
