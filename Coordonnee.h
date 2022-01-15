@@ -5,13 +5,14 @@
 #ifndef LABO8_ROBOT_COORDONNEE_H
 #define LABO8_ROBOT_COORDONNEE_H
 
-
+#include <ostream>
 class Robot;
 class Jeu;
 
 class Coordonnee {
-   friend class Robot;
    friend class Jeu;
+   friend class Robot;
+
    friend std::ostream& operator<< ( std::ostream& os, const Jeu& jeu);
 public:
    Coordonnee(unsigned x, unsigned y);

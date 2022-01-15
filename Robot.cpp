@@ -29,9 +29,6 @@ void Robot::deplacement(Direction direction, unsigned distance) {
    }
 }
 
-unsigned int generer(unsigned int min, unsigned int max) {
-
-}
 
 Robot::Direction Robot::genererDirection() {
    static bool premierCycle = true;
@@ -43,4 +40,11 @@ Robot::Direction Robot::genererDirection() {
 
    // Génère un nombre aléatoire 0 et le nombre de direction
    return Robot::Direction(rand()%(NBRE_DIRECTION-1));
+}
+
+Robot& Robot::operator=(const Robot &r) {
+   this->coordonnee = r.coordonnee;
+   this->id = r.id;
+
+   return *this;
 }
