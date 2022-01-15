@@ -1,27 +1,46 @@
 //
 // Created by timer on 14/01/2022.
 //
-
+#include <ctime>
+#include <cstdlib>
 #include "Robot.h"
 
 unsigned Robot::idCourant = 0;
-
-Robot::Robot(unsigned int x, unsigned int y) : x(x), y(y), id(++idCourant) {}
+const unsigned Robot::NBRE_DIRECTION = 4;
+Robot::Robot(const Coordonnee &coordonnee): coordonnee(coordonnee), id(idCourant) {
+   ++idCourant;
+}
 
 void Robot::deplacement(Direction direction, unsigned distance) {
    switch (direction) {
       case Robot::Direction::HAUT:
-         y -= distance;
+         coordonnee.y -= distance;
          break;
       case Robot::Direction::BAS:
-         y += distance;
+         coordonnee.y += distance;
          break;
       case Robot::Direction::GAUCHE:
-         x -= distance;
+         coordonnee.x -= distance;
          break;
       case Robot::Direction::DROITE:
-         x += distance;
+         coordonnee.x += distance;
          break;
 
    }
+}
+
+unsigned int generer(unsigned int min, unsigned int max) {
+
+}
+
+Robot::Direction Robot::genererDirection() {
+   static bool premierCycle = true;
+
+   if (premierCycle) { // Doit être réalisé une seule fois
+      srand((unsigned)time(NULL));
+      premierCycle = false;
+   }
+
+   // Génère un nombre aléatoire 0 et le nombre de direction
+   return Robot::Direction(rand()%(NBRE_DIRECTION-1));
 }
