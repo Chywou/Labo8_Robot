@@ -14,6 +14,7 @@ class Jeu {
    friend std::ostream& operator<< ( std::ostream& os, const Jeu& jeu);
 public:
    Jeu(unsigned hauteur, unsigned largeur, unsigned nbreRobot, unsigned posDepart = 0);
+   void demmarer();
 private:
    const unsigned hauteur, largeur, posDepart;
    std::vector<Robot> robots;
@@ -21,6 +22,7 @@ private:
 
    bool CoordonneeUtilise(const Coordonnee& c);
    bool directionValide(const Robot& r, Robot::Direction direction);
+   Robot::Direction genererDirection (const Robot& r);
    Robot prochainRobotAfficher(const Coordonnee& last) const;
 };
 

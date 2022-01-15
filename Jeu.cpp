@@ -1,9 +1,9 @@
 //
 // Created by timer on 14/01/2022.
 //
-
+#include <iostream>
+#include <thread>
 #include "Jeu.h"
-#include "Coordonnee.h"
 
 using namespace std;
 Jeu::Jeu(unsigned int hauteur, unsigned int largeur, unsigned int nbreRobot, unsigned posDepart) :
@@ -22,9 +22,7 @@ Jeu::Jeu(unsigned int hauteur, unsigned int largeur, unsigned int nbreRobot, uns
       } while (coordonneeUnique);
 
 
-
    }
-
 }
 
 bool Jeu::CoordonneeUtilise(const Coordonnee &c) {
@@ -37,13 +35,13 @@ bool Jeu::CoordonneeUtilise(const Coordonnee &c) {
 bool Jeu::directionValide(const Robot &r, Robot::Direction direction) {
    switch (direction) {
       case Robot::Direction::HAUT:
-         if(r.coordonnee.y == 0) return false;
+         if(r.coordonnee.y == posDepart) return false;
          break;
       case Robot::Direction::BAS:
          if(r.coordonnee.y  == hauteur - 1) return false;
          break;
       case Robot::Direction::GAUCHE:
-         if(r.coordonnee.x  == 0) return false;
+         if(r.coordonnee.x  == posDepart) return false;
          break;
       case Robot::Direction::DROITE:
          if(r.coordonnee.x  == largeur - 1) return false;
@@ -64,10 +62,6 @@ Robot Jeu::prochainRobotAfficher(const Coordonnee& last) const {
 }
 
 ostream& operator<< ( std::ostream& os, const Jeu& jeu){
-//   for(Robot r: jeu.robots) {
-//      os << r.id << " : " << r.cor.y << " " << r.cor.x << endl;
-//   }
-
    os << string(jeu.largeur-jeu.posDepart +2, '-') << endl;
    Coordonnee c(jeu.posDepart,jeu.posDepart);
    //appelle a une fonction anonnyme
@@ -91,3 +85,36 @@ ostream& operator<< ( std::ostream& os, const Jeu& jeu){
    return os;
 }
 
+void Jeu::demmarer() {
+
+   cout<< *this << endl;
+   do {
+      for(Robot& robot: robots){
+         robot.deplacement(genererDirection(robot));
+         for (vector<Robot>::iterator it = robots.begin(); it < robots.end(); ++it) {
+            if(robot.coordonnee == it->coordonnee && robot.id != it->id){
+               raport.push_back( to_string(robot.id) + " killed " + to_string(it->id));
+               robots.erase(it, it+1);
+            }
+         }
+      }
+
+
+      system("cls");
+      cout<< *this << endl;
+      for(string s: raport){
+         cout << s << endl;
+      }
+      this_thread::sleep_for(200ms);
+   } while (robots.size() > 1);
+
+}
+
+Robot::Direction Jeu::genererDirection(const Robot &r) {
+   Robot::Direction direction;
+   do {
+      direction = Robot::genererDirection();
+   } while (!directionValide(r, direction));
+
+   return direction;
+}

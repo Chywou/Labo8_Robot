@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "Robot.h"
 
-unsigned Robot::idCourant = 0;
+unsigned Robot::idCourant = 1;
 const unsigned Robot::NBRE_DIRECTION = 4;
 Robot::Robot(const Coordonnee &coordonnee): coordonnee(coordonnee), id(idCourant) {
    ++idCourant;
@@ -25,7 +25,6 @@ void Robot::deplacement(Direction direction, unsigned distance) {
       case Robot::Direction::DROITE:
          coordonnee.x += distance;
          break;
-
    }
 }
 
@@ -39,7 +38,7 @@ Robot::Direction Robot::genererDirection() {
    }
 
    // Génère un nombre aléatoire 0 et le nombre de direction
-   return Robot::Direction(rand()%(NBRE_DIRECTION-1));
+   return Robot::Direction(rand()%(NBRE_DIRECTION));
 }
 
 Robot& Robot::operator=(const Robot &r) {
