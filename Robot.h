@@ -17,7 +17,7 @@ public:
    void deplacement(Direction direction, unsigned distance = 1);
    bool memeDirection(const Robot& robot) const;
    static Direction genererDirection();
-   Robot& operator=(const Robot& r);//pour le vector<Robot>.erase
+//   Robot& operator=(const Robot& r);//pour le vector<Robot>.erase
 private:
    Coordonnee coordonnee;
    unsigned id; //attention modifier pour l'opérateur =

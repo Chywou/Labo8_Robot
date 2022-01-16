@@ -40,10 +40,10 @@ Robot::Direction Robot::genererDirection() {
    // Génère un nombre aléatoire 0 et le nombre de direction
    return Robot::Direction(rand()%(NBRE_DIRECTION));
 }
-
-Robot& Robot::operator=(const Robot &r) {
-   this->coordonnee = r.coordonnee;
-   this->id = r.id;
-
-   return *this;
-}
+//
+//Robot& Robot::operator=(const Robot &r) {
+//   this->coordonnee = r.coordonnee;
+//   this->id = r.id;
+//
+//   return *this;
+//}

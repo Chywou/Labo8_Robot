@@ -50,39 +50,28 @@ bool Jeu::directionValide(const Robot &r, Robot::Direction direction) {
    return true;
 }
 
-Robot Jeu::prochainRobotAfficher(const Coordonnee& last) const {
-   //exeception si robots.size() < 1
-   Robot res = Robot(Coordonnee(largeur+1,hauteur+1));
-   for(Robot r: robots) {
-      if(last < r.coordonnee && res.coordonnee > r.coordonnee ){
-         res = r;
-      }
-   }
-   return res;
-}
-
 ostream& operator<< ( std::ostream& os, const Jeu& jeu){
-   os << string(jeu.largeur-jeu.posDepart +2, '-') << endl;
-   Coordonnee c(jeu.posDepart,jeu.posDepart);
-   //appelle a une fonction anonnyme
-   Robot prochainRobot = *min_element(jeu.robots.begin(), jeu.robots.end(),[](const Robot& r, const Robot& u){
-      return r.coordonnee < u.coordonnee;
-   });
-   for (; c.y < jeu.hauteur ; ++c.y) {
-      os << "|";
-      for (;c.x < jeu.largeur ; ++c.x) {
-         if(c == prochainRobot.coordonnee) {
-            os << prochainRobot.id;
-            prochainRobot = jeu.prochainRobotAfficher(c);
-         }else{
-            os << " ";
-         }
-      }
-      c.x = jeu.posDepart;
-      os << "|" << endl;
+   string plateau = "";
+   string ligne = "";
+   plateau.append(jeu.largeur+2, '-');
+   plateau.append(1,'\n');
+   ligne.append(1,'|');
+   ligne.append(jeu.largeur,' ');
+   ligne.append(1,'|');
+   ligne.append(1,'\n');
+
+
+   for (int i = 0; i < jeu.hauteur; ++i) {
+      plateau.append(ligne);
    }
-   os << string(jeu.largeur-jeu.posDepart +2, '-') << endl;
-   return os;
+   plateau.append(jeu.largeur+2, '-');
+
+   for(Robot r: jeu.robots) {
+      plateau[(r.coordonnee.y+1) * (jeu.largeur+3)+r.coordonnee.x+1] =  r.id +48;
+   }
+
+   return os << plateau;
+
 }
 
 void Jeu::demmarer() {
