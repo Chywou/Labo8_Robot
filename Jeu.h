@@ -23,7 +23,6 @@ private:
    bool CoordonneeUtilise(const Coordonnee& c);
    bool directionValide(const Robot& r, Robot::Direction direction);
    Robot::Direction genererDirection (const Robot& r);
-   Robot prochainRobotAfficher(const Coordonnee& last) const;
 };
 
 
