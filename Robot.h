@@ -7,22 +7,39 @@
 #include <ostream>
 #include "Coordonnee.h"
 
-class Jeu;
+class Jeu; //definir qu'une classe jeu existe
 class Robot {
-   friend class Jeu;
-   friend std::ostream& operator<< ( std::ostream& os, const Jeu& jeu);
+   friend class Jeu; // class en ami pour avoir acces au element prive de cette class
+   friend std::ostream& operator<< ( std::ostream& os, const Jeu& jeu); // pour avoir acces au champs prive de la
+                                                                        // class pour l'affichage du jeu
 public:
    enum class Direction {HAUT, BAS, GAUCHE, DROITE};
+   //===================================
+   // Constructeur Robot a besoin de coordonnee
+   // pour etre cree. il va initialiser coordonnee
+   // et attribuer un id
+   //===================================
    Robot(const Coordonnee& coordonnee);
+   //===================================
+   // fonction qui permet de déplacer le robot
+   // dans une certaine direction et a une certaine
+   // distance
+   //===================================
    void deplacement(Direction direction, unsigned distance = 1);
-   bool memeDirection(const Robot& robot) const;
+   //===================================
+   // cette fonction gnerere une direction
+   // de maniere aleatoire
+   //===================================
    static Direction genererDirection();
-//   Robot& operator=(const Robot& r);//pour le vector<Robot>.erase
 private:
-   Coordonnee coordonnee;
-   unsigned id; //attention modifier pour l'opérateur =
-   static unsigned idCourant;
-   static const unsigned NBRE_DIRECTION;
+   Coordonnee coordonnee;                 // coordonnee du robot
+   //===================================
+   // l'id du robot ne peux pas etre const sinon
+   // l'operateur = est implicitement supprimé
+   //===================================
+   unsigned id;
+   static unsigned idCourant;             // l'id courant est egale au nombre de robot cree
+   static const unsigned NBRE_DIRECTION;  // nombre de direction que le robot peut se deplacer
 };
 
 

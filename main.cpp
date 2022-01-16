@@ -37,6 +37,9 @@ int main() {
    j.demmarer();
 
 
+//   Jeu u(hauteur,largeur,nbreRobot);
+//   u.demmarer();
+
    pause();
    return EXIT_SUCCESS;
 }

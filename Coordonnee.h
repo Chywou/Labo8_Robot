@@ -16,12 +16,7 @@ class Coordonnee {
    friend std::ostream& operator<< ( std::ostream& os, const Jeu& jeu);
 public:
    Coordonnee(unsigned x, unsigned y);
-
    bool operator==(const Coordonnee& c);
-   bool operator<  (const Coordonnee& c) const;
-   bool operator>  (const Coordonnee& c) const;
-   bool operator<= (const Coordonnee& c) const;
-   bool operator>= (const Coordonnee& c) const;
    static Coordonnee generer(unsigned min, unsigned maxX, unsigned maxY);
 
 private:

@@ -21,27 +21,3 @@ Coordonnee Coordonnee::generer(unsigned min, unsigned maxX, unsigned maxY) {
 bool Coordonnee::operator==(const Coordonnee &c) {
    return (x == c.x && y == c.y);
 }
-
-bool Coordonnee::operator<(const Coordonnee &c) const {
-   if(y<c.y){
-      return true;
-   }
-   if(y== c.y){
-      if(x < c.x){
-         return true;
-      }
-   }
-   return false;
-}
-
-bool Coordonnee::operator<=(const Coordonnee &c) const {
-   return !(*this < c);
-}
-
-bool Coordonnee::operator>(const Coordonnee &c) const {
-   return c < *this;
-}
-
-bool Coordonnee::operator>=(const Coordonnee &c) const {
-   return !(c < *this);
-}
