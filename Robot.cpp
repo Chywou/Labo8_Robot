@@ -1,6 +1,17 @@
-//
-// Created by timer on 14/01/2022.
-//
+/*
+-----------------------------------------------------------------------------------
+Nom du fichier : Robot.cpp
+Nom du labo    : Labo 08 : Survivor
+Auteur(s)      : Laetitia Guidetti et Tim Ernst
+Date creation  : 14.01.2022
+Description    : Définitiion de la classe Robot.
+
+Remarque(s)    :
+
+
+Compilateur    : Mingw-w64 g++ 11.2.0
+-----------------------------------------------------------------------------------
+*/
 #include <ctime>
 #include <cstdlib>
 #include "Robot.h"

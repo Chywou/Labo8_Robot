@@ -20,3 +20,8 @@ classe Jeu
 Question Gabi
 Taille en unsigned ou on imagine que peut être négatif un jour
 const référence sur un enum class
+
+
+Pourquoi ?
+le ++idCourant et pas idSuivant
+Generer direction de Jeu à rename

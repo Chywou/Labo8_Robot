@@ -1,12 +1,14 @@
 /*
 -----------------------------------------------------------------------------------
 Nom du fichier : annexe.h
-Nom du labo    : Labo06 Crible
-Auteur(s)      : Tim Ernst
-Date creation  : 19.11.2021
-Description    : Ce programme permet de regrouper des fonctionnalités varier utile dans
-               : la majorité des programmes
+Nom du labo    : Labo 08 : Survivor
+Auteur(s)      : Laetitia Guidetti et Tim Ernst
+Date creation  : 14.01.2022
+Description    :
+
 Remarque(s)    :
+
+
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
@@ -14,30 +16,28 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 #ifndef LABO6_ANNEXE_H
 #define LABO6_ANNEXE_H
 
-#include <string>    // permet d'utiliser les string
+#include <string>    // Permet d'utiliser les string
 
 
-/**----------------------------------------
-* vider le buffer du CIN
-----------------------------------------*/
+
+/// Nom             viderBuffer
+/// But             Permet de vider le buffer cin
 void viderBuffer();
 
-/**----------------------------------------
-* pause permet de mettre en pause le programme et attend que
-* l'utiliteur entre une valleur
-* @param message    message d'information pour l'utilisateur
-----------------------------------------*/
+/// Nom             pause
+/// But             Permet de mettre en pause le programme
+/// \param message
 void pause(const std::string& message = "Veillez presser ENTRER pour quitter");
 
-/**----------------------------------------
-* saisir attend la saisi de l'utiliseur et controle si la
-* valeur est entre les bornes min et max comprise
-* @param   min              comprise dans l'interval autorisé
-* @param   max              comprise dans l'interval autorisé
-* @param   messageSaisie    message de saisi pour l'utilisateur
-* @param   messageErreur    message d'erreur pour l'utilisateur
-* @return  retourn la valeur saisi par l'utilisateur
-----------------------------------------*/
+/// Nom                     Saisie
+/// But                     Permet de récupérer une saisie d'utilisateur contrôlée
+///                         entre une valeur min et max comprises.
+/// \tparam T
+/// \param min              Valeur minimale comprise
+/// \param max              Valeur maximale comprise
+/// \param messageSaisie    Message à afficher lors de la saisie
+/// \param messageErreur    Message à afficher lors d'une erreur de saisie
+/// \return                 Retourne la valeur saisie de l'utilisateur de type T
 template <typename T>
 T  saisir(T min, T max, const std::string& messageSaisie,const std::string& messageErreur);
 

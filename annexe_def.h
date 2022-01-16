@@ -1,12 +1,19 @@
-// Fichier     : annexe.cpp
-// Auteur      : Tim Ernst
-// Date        : 19.11.2021
-// But         : ce programme repertorie des fonctions général pour un programme
-// Remarque    : n/a
-// Modifs      : n/a
-// Compilateur : Mingw-w64 g++ 11.2.0
+/*
+-----------------------------------------------------------------------------------
+Nom du fichier : annexe_def.h
+Nom du labo    : Labo 08 : Survivor
+Auteur(s)      : Laetitia Guidetti et Tim Ernst
+Date creation  : 14.01.2022
+Description    :
 
-#include <iostream>  // cin et cout
+Remarque(s)    :
+
+
+Compilateur    : Mingw-w64 g++ 11.2.0
+-----------------------------------------------------------------------------------
+*/
+
+#include <iostream>  // cin, cout
 #include <limits>    // numeric_limits
 
 using namespace std;
@@ -28,7 +35,7 @@ T saisir(T min, T max, const string& messageSaisie, const string& messageErreur)
 
    do {
       // message et saisie
-      cout << messageSaisie << "[" << min << " : " << max << "]";
+      cout << messageSaisie << "[" << min << " : " << max << "] :";
       cin >> saisie;
 
       // vérification

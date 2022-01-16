@@ -1,16 +1,19 @@
 /*
 -----------------------------------------------------------------------------------
 Nom du fichier : main.cpp
-Nom du labo :
-Auteur(s) : tim ernst
-Date creation : <jj.mm.aaaa>
-Description :
-Remarque(s) :
-Compilateur : Mingw-w64 g++ 11.2.0
+Nom du labo    : Labo 08 : Survivor
+Auteur(s)      : Laetitia Guidetti et Tim Ernst
+Date creation  : 14.01.2022
+Description    : Ce programme permet de ...
+
+Remarque(s)    :
+
+
+Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
+
 #include <cstdlib>
-#include <iostream>
 #include "Jeu.h"
 #include "annexe.h"
 using namespace std;
@@ -19,17 +22,17 @@ int main() {
    const unsigned MAX_LARGEUR = 1000;
    const unsigned MAX_ROBOT   = 9;
 
-   unsigned hauteur = saisir<unsigned>(0,
+   unsigned hauteur = saisir<unsigned>(10,
                                        MAX_HAUTEUR,
-                                       "Saisir la hauteur :",
+                                       "Saisir la hauteur ",
                                        "Recommencer la saisie");
-   unsigned largeur = saisir<unsigned>(0,
+   unsigned largeur = saisir<unsigned>(10,
                                        MAX_LARGEUR,
-                                       "Saisir la largeur :",
+                                       "Saisir la largeur ",
                                        "Recommencer la saisie");
    unsigned nbreRobot = saisir<unsigned>(1,
                                        MAX_ROBOT,
-                                       "Saisir le nombre de robot:",
+                                       "Saisir le nombre de robot ",
                                        "Recommencer la saisie");
 
 
