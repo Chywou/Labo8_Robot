@@ -21,6 +21,7 @@ void viderBuffer(){
 }
 
 void pause (const string& message){
+   cout << endl;
    cout << message << endl;
    viderBuffer();
 }

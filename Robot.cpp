@@ -12,48 +12,33 @@ Remarque(s)    :
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
-#include <ctime>
-#include <cstdlib>
 #include "Robot.h"
 
-      unsigned Robot::idCourant        = 1;
-const unsigned Robot::NBRE_DIRECTION   = 4;
-
-Robot::Robot(const Coordonnee& coordonnee): coordonnee(coordonnee), id(idCourant) {
-   ++idCourant;
-}
-
-void Robot::deplacement(Direction direction, unsigned distance) {
-   switch (direction) {
-      case Robot::Direction::HAUT:
-         coordonnee.y -= distance;
-         break;
-      case Robot::Direction::BAS:
-         coordonnee.y += distance;
-         break;
-      case Robot::Direction::GAUCHE:
-         coordonnee.x -= distance;
-         break;
-      case Robot::Direction::DROITE:
-         coordonnee.x += distance;
-         break;
-   }
-}
-
-Robot::Direction Robot::genererDirection() {
-   static bool premierCycle = true;
-
-   if (premierCycle) { // Doit être réalisé une seule fois
-      srand((unsigned)time(NULL));
-      premierCycle = false;
-   }
-
-   // Génère un nombre aléatoire 0 et le nombre de direction
-   return Robot::Direction(rand()%(NBRE_DIRECTION));
-}
+Robot::Robot(const Coordonnee& coordonnee, unsigned id): coordonnee(coordonnee), id(id) {}
 
 Robot& Robot::operator=(const Robot& robot) {
    (unsigned &)this->id = robot.id;//cast pour en non constant pour changer ca valeure
    this->coordonnee = robot.coordonnee;
    return *this;
+}
+
+bool Robot::memeEmplacement(const Robot& robot) {
+  return memeEmplacement(robot.coordonnee) && id != robot.id ;
+}
+
+bool Robot::memeEmplacement(const Coordonnee& coordonnee) {
+
+   return this->coordonnee == coordonnee;
+}
+
+unsigned int Robot::getId() {
+   return id;
+}
+
+void Robot::deplacement(Coordonnee::Direction direction, unsigned int distance) {
+   coordonnee.deplacement(direction, distance);
+}
+
+Coordonnee Robot::getCoordonnee() const {
+   return coordonnee;
 }

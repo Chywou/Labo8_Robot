@@ -24,39 +24,39 @@ Jeu::Jeu(unsigned int hauteur, unsigned int largeur, unsigned int nbreRobot, uns
          hauteur(hauteur), largeur(largeur), posDepartX(posDepartX), posDepartY(posDepartY) {
    assert((largeur-posDepartX)*(hauteur-posDepartY) > nbreRobot);
    robots.reserve(nbreRobot);
-   for(unsigned i = 0; i < nbreRobot; ++i) {
+   for(unsigned i = 1; i <= nbreRobot; ++i) {
       bool coordonneeUnique = true;
       do {
          Coordonnee coordonnee = Coordonnee(aleatoire(posDepartX,largeur),aleatoire(posDepartY,hauteur));
          if(!coordonneeUtilise(coordonnee)){
             // Ne crée pas de copy de l'object Coordonnee
-            robots.emplace_back(coordonnee);
+            robots.emplace_back(coordonnee, i);
             coordonneeUnique = false;
          }
       } while (coordonneeUnique);
    }
 }
 
-bool Jeu::coordonneeUtilise(const Coordonnee &coordonnee) const {
+bool Jeu::coordonneeUtilise(const Coordonnee& coordonnee) const {
    for(Robot r: robots){
-      if(r.coordonnee == coordonnee) return true;
+      if(r.memeEmplacement(coordonnee)) return true;
    }
    return false;
 }
 
-bool Jeu::directionValide(const Robot &robot, Robot::Direction direction, unsigned distance) const {
+bool Jeu::directionValide(const Robot& robot, Coordonnee::Direction direction, unsigned distance) const {
    switch (direction) {
-      case Robot::Direction::HAUT:
-         if(robot.coordonnee.y == posDepartY) return false;
+      case Coordonnee::Direction::HAUT:
+         if(robot.getCoordonnee().getY() == posDepartY) return false;
          break;
-      case Robot::Direction::BAS:
-         if(robot.coordonnee.y == hauteur - 1) return false;
+      case Coordonnee::Direction::BAS:
+         if(robot.getCoordonnee().getY() == hauteur - 1) return false;
          break;
-      case Robot::Direction::GAUCHE:
-         if(robot.coordonnee.x  == posDepartX) return false;
+      case Coordonnee::Direction::GAUCHE:
+         if(robot.getCoordonnee().getX()  == posDepartX) return false;
          break;
-      case Robot::Direction::DROITE:
-         if(robot.coordonnee.x == largeur - 1) return false;
+      case Coordonnee::Direction::DROITE:
+         if(robot.getCoordonnee().getX() == largeur - 1) return false;
          break;
    }
    return true;
@@ -93,8 +93,8 @@ void Jeu::demmarer() {
       for (vector<Robot>::iterator robot = robots.begin(); robot < robots.end(); ++robot) {
          robot->deplacement(directionUtilisable(*robot));
          for (vector<Robot>::iterator it = robots.begin(); it < robots.end(); ++it) {
-            if(robot->coordonnee == it->coordonnee && robot->id != it->id){
-               rapport.push_back(to_string(robot->id) + " a tue " + to_string(it->id));
+            if(robot->memeEmplacement(*it)){
+               rapport.push_back(to_string(robot->getId()) + " a tue " + to_string(it->getId()));
                robots.erase(it);
                if(distance(it, robot) > 0) --robot;
                break;
@@ -110,13 +110,13 @@ void Jeu::demmarer() {
       }
       this_thread::sleep_for(200ms);
    } while (robots.size() > 1);
-   cout << robots[0].id << " a gagne !" << endl;
+   cout << robots[0].getId() << " a gagne !" << endl;
 }
 
-Robot::Direction Jeu::directionUtilisable(const Robot& robot) const {
-   Robot::Direction direction;
+Coordonnee::Direction Jeu::directionUtilisable(const Robot& robot) const {
+   Coordonnee::Direction direction;
    do {
-      direction = Robot::Direction(aleatoire(0, (int)Robot::NBRE_DIRECTION));
+      direction = Coordonnee::Direction(aleatoire(0, (int)Coordonnee::getNbrDirection()));
    } while (!directionValide(robot, direction));
 
    return direction;

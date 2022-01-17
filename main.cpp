@@ -31,26 +31,17 @@ int main() {
    const unsigned MIN_ROBOT   = 1;
    const unsigned MAX_ROBOT   = 9;
 
-   unsigned hauteur = saisir<unsigned>(MIN_HAUTEUR,
-                                       MAX_HAUTEUR,
-                                       MSG_HAUTEUR,
-                                       MSG_ERREUR);
-   unsigned largeur = saisir<unsigned>(MIN_LARGEUR,
-                                       MAX_LARGEUR,
-                                       MSG_LARGEUR,
-                                       MSG_ERREUR);
-   unsigned nbreRobot = saisir<unsigned>(MIN_ROBOT,
-                                       MAX_ROBOT,
-                                         NBR_ROBOT ,
-                                         MSG_ERREUR);
+   unsigned hauteur = saisir<unsigned>(MIN_HAUTEUR, MAX_HAUTEUR,
+                                       MSG_HAUTEUR, MSG_ERREUR);
+   unsigned largeur = saisir<unsigned>(MIN_LARGEUR, MAX_LARGEUR,
+                                       MSG_LARGEUR, MSG_ERREUR);
+   unsigned nbreRobot = saisir<unsigned>(MIN_ROBOT, MAX_ROBOT,
+                                         NBR_ROBOT, MSG_ERREUR);
 
 
    Jeu j(hauteur,largeur,nbreRobot);
    j.demmarer();
 
-
-//   Jeu u(hauteur,largeur,nbreRobot);
-//   u.demmarer();
 
    pause();
    return EXIT_SUCCESS;

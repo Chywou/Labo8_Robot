@@ -55,13 +55,13 @@ private:
    /// \param r            Robot dont la direction doit être vérifiée
    /// \param direction    Direction à vérifier
    /// \return             Retourne vrai si la direction est valide, faux sinon
-   bool directionValide(const Robot& robot, Robot::Direction direction, unsigned distance = 1) const;
+   bool directionValide(const Robot& robot, Coordonnee::Direction direction, unsigned distance = 1) const;
 
    /// Nom                 directionUtilisable
    /// But                 Obtenir une direction utilisable par le robot
    /// \param robot        Robot dont une direction utilisable doit être détérminée
    /// \return             Direction utilisable
-   Robot::Direction directionUtilisable (const Robot& robot) const;
+   Coordonnee::Direction directionUtilisable (const Robot& robot) const;
 
 };
 
