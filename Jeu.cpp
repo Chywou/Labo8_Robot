@@ -47,16 +47,16 @@ bool Jeu::coordonneeUtilise(const Coordonnee &coordonnee) const {
 bool Jeu::directionValide(const Robot &robot, Robot::Direction direction, unsigned distance) const {
    switch (direction) {
       case Robot::Direction::HAUT:
-         if(distance - robot.coordonnee.y <= posDepartY) return false;
+         if(robot.coordonnee.y == posDepartY) return false;
          break;
       case Robot::Direction::BAS:
-         if(robot.coordonnee.y  == hauteur - 1) return false;
+         if(robot.coordonnee.y == hauteur - 1) return false;
          break;
       case Robot::Direction::GAUCHE:
          if(robot.coordonnee.x  == posDepartX) return false;
          break;
       case Robot::Direction::DROITE:
-         if(robot.coordonnee.x  == largeur - 1) return false;
+         if(robot.coordonnee.x == largeur - 1) return false;
          break;
    }
    return true;
