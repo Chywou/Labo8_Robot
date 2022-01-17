@@ -43,13 +43,18 @@ public:
    /// But                 Générer une direction aléatoirement
    /// \return
    static Direction genererDirection();
+
+   /// Nom                 =
+   /// \param robot        robot a copier dans le nouveau robot
+   /// \return             le robot copier
+   Robot& operator= (const Robot& robot);
 private:
    Coordonnee coordonnee;                 // coordonnee du robot
    //===================================
    // l'id du robot ne peux pas etre const sinon
    // l'operateur = est implicitement supprimé
    //===================================
-   unsigned id;
+   const unsigned id;
    static unsigned idCourant;             // L'id courant est egale au nombre de robot cree
    static const unsigned NBRE_DIRECTION;  // Nombre de directions que le robot peut se deplacer
 };

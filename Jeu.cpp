@@ -25,10 +25,10 @@ Jeu::Jeu(unsigned int hauteur, unsigned int largeur, unsigned int nbreRobot, uns
    for(unsigned i = 0; i < nbreRobot; ++i) {
       bool coordonneeUnique = true;
       do {
-         Coordonnee coor = Coordonnee::generer(posDepart, largeur, hauteur);
-         if(!coordonneeUtilise(coor)){
+         Coordonnee coordonnee = Coordonnee::generer(posDepart, largeur, hauteur);
+         if(!coordonneeUtilise(coordonnee)){
             // Ne crée pas de copy de l'object Coordonnee
-            robots.emplace_back(coor);
+            robots.emplace_back(coordonnee);
             coordonneeUnique = false;
          }
       } while (coordonneeUnique);
@@ -90,12 +90,14 @@ void Jeu::demmarer() {
 
    cout<< *this << endl;
    do {
-      for(Robot& robot: robots){
-         robot.deplacement(directionUtilisable(robot));
+      for (vector<Robot>::iterator robot = robots.begin(); robot < robots.end(); ++robot) {
+         robot->deplacement(directionUtilisable(*robot));
          for (vector<Robot>::iterator it = robots.begin(); it < robots.end(); ++it) {
-            if(robot.coordonnee == it->coordonnee && robot.id != it->id){
-               rapport.push_back(to_string(robot.id) + " a tue " + to_string(it->id));
+            if(robot->coordonnee == it->coordonnee && robot->id != it->id){
+               rapport.push_back(to_string(robot->id) + " a tue " + to_string(it->id));
                robots.erase(it);
+               if(distance(it, robot) > 0) --robot;
+               break;
             }
          }
       }
