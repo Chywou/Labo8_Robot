@@ -12,24 +12,27 @@ Remarque(s)    :
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
-#include <iostream>  // cout pour la fonction d'affichage
-#include <thread>    // sleep_for pour mettre un temps entre l'affichage
+#include <iostream>  // cout
+#include <thread>    // sleep_for
 #include <cassert>   // assert
-#include "annexe.h"
+#include "annexe.h"  // aleatoire
 #include "Jeu.h"
 
 
 using namespace std;
 Jeu::Jeu(unsigned int hauteur, unsigned int largeur, unsigned int nbreRobot, unsigned posDepartX, unsigned posDepartY) :
          hauteur(hauteur), largeur(largeur), posDepartX(posDepartX), posDepartY(posDepartY) {
+
    assert((largeur-posDepartX)*(hauteur-posDepartY) > nbreRobot);
    robots.reserve(nbreRobot);
+
    for(unsigned i = 1; i <= nbreRobot; ++i) {
       bool coordonneeUnique = true;
       do {
          Coordonnee coordonnee = Coordonnee(aleatoire(posDepartX,largeur),aleatoire(posDepartY,hauteur));
+
+         // Vérifie que les coordonnées ne sont pas déjà occupées par un autre robot
          if(!coordonneeUtilise(coordonnee)){
-            // Ne crée pas de copy de l'object Coordonnee
             robots.emplace_back(coordonnee, i);
             coordonneeUnique = false;
          }
@@ -63,6 +66,8 @@ bool Jeu::directionValide(const Robot& robot, Coordonnee::Direction direction, u
 }
 
 ostream& operator<< ( std::ostream& os, const Jeu& jeu){
+
+   // Création d'un string correspondant au terrain de jeu vide
    string plateau;
    string ligne;
    plateau.append(jeu.largeur+2, '-');
@@ -72,14 +77,14 @@ ostream& operator<< ( std::ostream& os, const Jeu& jeu){
    ligne.append(1,'|');
    ligne.append(1,'\n');
 
-
    for (unsigned i = 0; i < jeu.hauteur; ++i) {
       plateau.append(ligne);
    }
    plateau.append(jeu.largeur+2, '-');
 
+   // Ajoute les robots au string aux bonnes coordonnées
    for(Robot r: jeu.robots) {
-      plateau[(r.coordonnee.y+1) * (jeu.largeur+3)+r.coordonnee.x+1] =  char(r.id + 48);
+      plateau[(r.getCoordonnee().getY()+1) * (jeu.largeur+3)+r.getCoordonnee().getX()+1] =  char(r.getId() + 48);
    }
 
    return os << plateau;
@@ -88,26 +93,29 @@ ostream& operator<< ( std::ostream& os, const Jeu& jeu){
 
 void Jeu::demmarer() {
 
+   // Appelle de ostream& operator<< ( std::ostream& os, const Jeu& jeu)
    cout<< *this << endl;
+
    do {
       for (vector<Robot>::iterator robot = robots.begin(); robot < robots.end(); ++robot) {
+         // Déplacement du robot dans une direction aléatoire
          robot->deplacement(directionUtilisable(*robot));
+
          for (vector<Robot>::iterator it = robots.begin(); it < robots.end(); ++it) {
+            // Vérifie si le robot en se déplacant a mangé un autre robot ou non
             if(robot->memeEmplacement(*it)){
                rapport.push_back(to_string(robot->getId()) + " a tue " + to_string(it->getId()));
                robots.erase(it);
                if(distance(it, robot) > 0) --robot;
-               break;
+               break; // Il n'est pas possible de manger plus d'un robot par déplacement
             }
          }
       }
 
-
+      // Clear la console, ATTENTION valable uniquement pour Windows
       system("cls");
-      cout<< *this << endl;
-      for(const string& s : rapport){
-         cout << s << endl;
-      }
+      affichageJeu();
+
       this_thread::sleep_for(200ms);
    } while (robots.size() > 1);
    cout << robots[0].getId() << " a gagne !" << endl;
@@ -115,9 +123,18 @@ void Jeu::demmarer() {
 
 Coordonnee::Direction Jeu::directionUtilisable(const Robot& robot) const {
    Coordonnee::Direction direction;
+
+   // S'execute tant qu'une direction utilisable n'a pas été trouvée
    do {
       direction = Coordonnee::Direction(aleatoire(0, (int)Coordonnee::getNbrDirection()));
    } while (!directionValide(robot, direction));
 
    return direction;
+}
+
+void Jeu::affichageJeu() const {
+   cout<< *this << endl;
+   for(const string& s : rapport){
+      cout << s << endl;
+   }
 }

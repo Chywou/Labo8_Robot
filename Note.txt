@@ -9,12 +9,17 @@ assert pour le cas ou le nombre de case est plus petit que le nombre de robot �
 
 Gérer les directions quand distance > 1
 
-Commenter les includes
+Commenter les includes 🆗(normalement, à re vérifier)
 
-Commenter les fonctions en général
+Commenter les fonctions en général (en partie fait)
 
-Supprimer le static
+Supprimer le static 🆗
 
-Enlever les amitiés
+Enlever les amitiés 🆗
 
 random centralisé dnas jeu 🆗
+
+--------------
+Terme "objet courant" pour les commentaires ?
+Pourquoi le générateur de nombre aléatoire est un template
+Nom des constructeurs pour les commentaires ?

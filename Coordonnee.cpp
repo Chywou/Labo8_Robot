@@ -14,8 +14,6 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 */
 #include "Coordonnee.h"
 
-using namespace std;
-
 const unsigned Coordonnee::NBRE_DIRECTION   = 4;
 
 Coordonnee::Coordonnee(unsigned int x, unsigned int y): x(x), y(y) {}

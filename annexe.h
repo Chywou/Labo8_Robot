@@ -16,7 +16,7 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 #ifndef LABO6_ANNEXE_H
 #define LABO6_ANNEXE_H
 
-#include <string>    // Permet d'utiliser les string
+#include <string>    // Utilisation de string
 
 
 

@@ -15,6 +15,9 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 
 #include <iostream>  // cin, cout
 #include <limits>    // numeric_limits
+#include <ctime>     // time
+#include <cstdlib>   // srand, rand
+
 
 
 template <typename T>

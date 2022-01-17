@@ -13,12 +13,13 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
 
-#include <cstdlib>
-#include <string>
-#include "Jeu.h"
-#include "annexe.h"
+#include <cstdlib>         // EXIT_SUCCESS
+#include <string>          // Utilisation de string
+#include "Jeu.h"           // Utilisation de la class jeu
+#include "annexe.h"        // saisir
 using namespace std;
 int main() {
+
    const string   MSG_ERREUR      = "Recommencer la saisie";
    const string   MSG_HAUTEUR     = "Saisir la hauteur ";
    const string   MSG_LARGEUR     = "Saisir la largeur ";

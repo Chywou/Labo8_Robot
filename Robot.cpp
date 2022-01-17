@@ -17,8 +17,10 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 Robot::Robot(const Coordonnee& coordonnee, unsigned id): coordonnee(coordonnee), id(id) {}
 
 Robot& Robot::operator=(const Robot& robot) {
-   (unsigned &)this->id = robot.id;//cast pour en non constant pour changer ca valeure
+   // cast permettant de changer la valeur d'une variable constante
+   (unsigned &)this->id = robot.id;
    this->coordonnee = robot.coordonnee;
+
    return *this;
 }
 
@@ -27,11 +29,10 @@ bool Robot::memeEmplacement(const Robot& robot) {
 }
 
 bool Robot::memeEmplacement(const Coordonnee& coordonnee) {
-
    return this->coordonnee == coordonnee;
 }
 
-unsigned int Robot::getId() {
+unsigned int Robot::getId() const {
    return id;
 }
 

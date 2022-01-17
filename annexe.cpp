@@ -16,6 +16,7 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 #include "annexe.h"
 
 using namespace std;
+
 void viderBuffer(){
    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }

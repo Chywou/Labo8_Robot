@@ -16,11 +16,11 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 
 #ifndef LABO8_ROBOT_JEU_H
 #define LABO8_ROBOT_JEU_H
-#include <vector>              // Permet d'utiliser les vector
-#include <string>              // Permet d'utiliser les string
-#include <ostream>             //
-#include "Coordonnee.h"
-#include "Robot.h"
+#include <vector>              // Utilisation de vector
+#include <string>              // Utilisation de string
+#include <ostream>             // std::ostream& operator<<
+#include "Coordonnee.h"        // Utilisation de la class Coordonnee
+#include "Robot.h"             // Utilisation de la class Robot
 
 class Jeu {
    friend std::ostream& operator<< ( std::ostream& os, const Jeu& jeu);
@@ -62,6 +62,10 @@ private:
    /// \param robot        Robot dont une direction utilisable doit être détérminée
    /// \return             Direction utilisable
    Coordonnee::Direction directionUtilisable (const Robot& robot) const;
+
+   /// Nom                 affichageJeu
+   /// But                 Afficher le jeu
+   void affichageJeu() const;
 
 };
 
