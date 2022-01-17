@@ -1,10 +1,5 @@
-Robot.h -> passer en const unsigned id -> créer l'opérateur d'affectation avec un cast non constant
-
-Modifier les &
 
 Passer les c/coor en coordonnee, passer les r en robots
-
-Géréer le erase quand supprimé avant l'itérateur courant (Testé via distance)
 
 Créer les paramètre minX et minY pour jeu
 
@@ -15,3 +10,7 @@ Gérer les directions quand distance > 1
 Commenter les includes
 
 Commenter les fonctions en général
+
+Supprimer le static
+
+Enlever les amitiés
