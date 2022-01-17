@@ -16,35 +16,24 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 #include <iostream>  // cin, cout
 #include <limits>    // numeric_limits
 
-using namespace std;
-
-
-void viderBuffer(){
-   cin.ignore(numeric_limits<streamsize>::max(), '\n');
-}
-
-void pause (const string& message){
-   cout << message << endl;
-   viderBuffer();
-}
 
 template <typename T>
-T saisir(T min, T max, const string& messageSaisie, const string& messageErreur){
+T saisir(T min, T max, const std::string& messageSaisie, const std::string& messageErreur){
    T  saisie;
    bool erreur;
 
    do {
       // message et saisie
-      cout << messageSaisie << "[" << min << " : " << max << "] :";
-      cin >> saisie;
+      std::cout << messageSaisie << "[" << min << " : " << max << "] :";
+      std::cin >> saisie;
 
       // vérification
-      erreur = cin.fail() or saisie < min or saisie > max;
+      erreur = std::cin.fail() or saisie < min or saisie > max;
       if (erreur) {
          if(!messageErreur.empty()){
-            cout << messageErreur << endl;
+            std::cout << messageErreur << std::endl;
          }
-         cin.clear();
+         std::cin.clear();
       }
 
       viderBuffer();
@@ -52,4 +41,14 @@ T saisir(T min, T max, const string& messageSaisie, const string& messageErreur)
    } while(erreur);
 
    return saisie;
+}
+
+template <typename T>
+T  aleatoire(T min, T max){
+   static bool init = true;
+   if(init){
+      srand(time(NULL));
+      init = false;
+   }
+   return (rand()%(max-min))+min;
 }

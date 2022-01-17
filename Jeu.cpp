@@ -12,28 +12,28 @@ Remarque(s)    :
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
-#include <iostream>
-#include <thread>
-#include <algorithm>
+#include <iostream>  // cout pour la fonction d'affichage
+#include <thread>    // sleep_for pour mettre un temps entre l'affichage
+#include <cassert>   // assert
+#include "annexe.h"
 #include "Jeu.h"
 
-using namespace std;
-Jeu::Jeu(unsigned int hauteur, unsigned int largeur, unsigned int nbreRobot, unsigned posDepart) :
-         hauteur(hauteur), largeur(largeur), posDepart(posDepart) {
 
+using namespace std;
+Jeu::Jeu(unsigned int hauteur, unsigned int largeur, unsigned int nbreRobot, unsigned posDepartX, unsigned posDepartY) :
+         hauteur(hauteur), largeur(largeur), posDepartX(posDepartX), posDepartY(posDepartY) {
+   assert((largeur-posDepartX)*(hauteur-posDepartY) > nbreRobot);
    robots.reserve(nbreRobot);
    for(unsigned i = 0; i < nbreRobot; ++i) {
       bool coordonneeUnique = true;
       do {
-         Coordonnee coordonnee = Coordonnee::generer(posDepart, largeur, hauteur);
+         Coordonnee coordonnee = Coordonnee(aleatoire(posDepartX,largeur),aleatoire(posDepartY,hauteur));
          if(!coordonneeUtilise(coordonnee)){
             // Ne crée pas de copy de l'object Coordonnee
             robots.emplace_back(coordonnee);
             coordonneeUnique = false;
          }
       } while (coordonneeUnique);
-
-
    }
 }
 
@@ -44,19 +44,19 @@ bool Jeu::coordonneeUtilise(const Coordonnee &coordonnee) const {
    return false;
 }
 
-bool Jeu::directionValide(const Robot &r, Robot::Direction direction) const {
+bool Jeu::directionValide(const Robot &robot, Robot::Direction direction, unsigned distance) const {
    switch (direction) {
       case Robot::Direction::HAUT:
-         if(r.coordonnee.y == posDepart) return false;
+         if(distance - robot.coordonnee.y <= posDepartY) return false;
          break;
       case Robot::Direction::BAS:
-         if(r.coordonnee.y  == hauteur - 1) return false;
+         if(robot.coordonnee.y  == hauteur - 1) return false;
          break;
       case Robot::Direction::GAUCHE:
-         if(r.coordonnee.x  == posDepart) return false;
+         if(robot.coordonnee.x  == posDepartX) return false;
          break;
       case Robot::Direction::DROITE:
-         if(r.coordonnee.x  == largeur - 1) return false;
+         if(robot.coordonnee.x  == largeur - 1) return false;
          break;
    }
    return true;
@@ -116,7 +116,7 @@ void Jeu::demmarer() {
 Robot::Direction Jeu::directionUtilisable(const Robot& robot) const {
    Robot::Direction direction;
    do {
-      direction = Robot::genererDirection();
+      direction = Robot::Direction(aleatoire(0, (int)Robot::NBRE_DIRECTION));
    } while (!directionValide(robot, direction));
 
    return direction;

@@ -3,4 +3,4 @@ project(Labo8_Robot)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Labo8_Robot main.cpp Robot.cpp Robot.h Jeu.cpp Jeu.h Coordonnee.h Coordonnee.cpp annexe_def.h annexe.h)
+add_executable(Labo8_Robot main.cpp Robot.cpp Robot.h Jeu.cpp Jeu.h Coordonnee.h Coordonnee.cpp annexe_def.h annexe.h annexe.cpp)

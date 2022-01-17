@@ -42,6 +42,10 @@ template <typename T>
 T  saisir(T min, T max, const std::string& messageSaisie,const std::string& messageErreur);
 
 
+template <typename T>
+T  aleatoire(T min, T max);
+
+
 #include "annexe_def.h"
 
 #endif //LABO6_ANNEXE_H

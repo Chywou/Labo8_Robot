@@ -24,7 +24,6 @@ class Jeu;
 class Coordonnee {
    friend class Jeu;
    friend class Robot;
-
    friend std::ostream& operator<< ( std::ostream& os, const Jeu& jeu);
 public:
 
@@ -38,7 +37,7 @@ public:
    /// But             Détérminer si deux Coordonnee sont égales
    /// \param coor     Coordonnee à comparer
    /// \return         Retourne vrai si les deux coordonne sont égales, sinon faux
-   bool operator==(const Coordonnee& coor) const;
+   bool operator==(const Coordonnee& coordonnee) const;
 
    /// Nom             generer
    /// But             Generer un objet Coordonne
@@ -46,7 +45,7 @@ public:
    /// \param maxX     Valeur maximale pour x
    /// \param maxY     Valeur maximale pour y
    /// \return         Retourne un objet Coordonne
-   static Coordonnee generer(unsigned min, unsigned maxX, unsigned maxY);
+   static Coordonnee generer(unsigned minX, unsigned minY, unsigned maxX, unsigned maxY);
 
 private:
    unsigned x;

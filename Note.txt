@@ -1,9 +1,11 @@
 
-Passer les c/coor en coordonnee, passer les r en robots
+Passer les c/coor en coordonnee, passer les r en robots 🆗
 
-Créer les paramètre minX et minY pour jeu
+Créer les paramètre minX et minY pour jeu 🆗
 
-Créer des const string pour chaque message
+Créer des const string pour chaque message 🆗
+
+assert pour le cas ou le nombre de case est plus petit que le nombre de robot 🆗
 
 Gérer les directions quand distance > 1
 
@@ -14,3 +16,5 @@ Commenter les fonctions en général
 Supprimer le static
 
 Enlever les amitiés
+
+random centralisé dnas jeu 🆗

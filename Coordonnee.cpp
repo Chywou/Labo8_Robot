@@ -19,15 +19,15 @@ using namespace std;
 
 Coordonnee::Coordonnee(unsigned int x, unsigned int y): x(x), y(y) {}
 
-Coordonnee Coordonnee::generer(unsigned min, unsigned maxX, unsigned maxY) {
+Coordonnee Coordonnee::generer(unsigned minX, unsigned minY, unsigned maxX, unsigned maxY) {
    static bool init = true;
    if(init){
       srand(time(NULL));
       init = false;
    }
-   return {(rand()%(maxX-min))+min,(rand()%(maxY-min))+min};
+   return {(rand()%(maxX-minX))+minX,(rand()%(maxY-minY))+minY};
 }
 
-bool Coordonnee::operator==(const Coordonnee &coor) const {
-   return (x == coor.x && y == coor.y);
+bool Coordonnee::operator==(const Coordonnee& coordonnee) const {
+   return (x == coordonnee.x && y == coordonnee.y);
 }
