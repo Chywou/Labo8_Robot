@@ -1,27 +1,17 @@
-classe Robot
-unsigned x, y, id
-static unsigned idCourant
+Robot.h -> passer en const unsigned id -> créer l'opérateur d'affectation avec un cast non constant
 
-enum class Direction
+Modifier les &
 
-bool memePosition(const Robot& r)
-void deplacement()
-Direction Aleatoire()
+Passer les c/coor en coordonnee, passer les r en robots
 
-fonction
-do
-Direction
-	switch
-	Direct
-while()
+Géréer le erase quand supprimé avant l'itérateur courant (Testé via distance)
 
-classe Jeu
+Créer les paramètre minX et minY pour jeu
 
-Question Gabi
-Taille en unsigned ou on imagine que peut être négatif un jour
-const référence sur un enum class
+Créer des const string pour chaque message
 
+Gérer les directions quand distance > 1
 
-Pourquoi ?
-le ++idCourant et pas idSuivant
-Generer direction de Jeu à rename
+Commenter les includes
+
+Commenter les fonctions en général
