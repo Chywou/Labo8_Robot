@@ -26,3 +26,13 @@ void pause (const string& message){
    cout << message << endl;
    viderBuffer();
 }
+
+
+unsigned  aleatoire(unsigned min, unsigned max){
+   static bool init = true;
+   if(init){
+      srand(time(NULL));
+      init = false;
+   }
+   return (rand()%(max-min))+min;
+}

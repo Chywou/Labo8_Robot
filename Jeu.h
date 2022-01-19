@@ -32,14 +32,14 @@ public:
    /// \param largeur      Largeur du jeu
    /// \param nbreRobot    Nombre de Robots
    /// \param posDepart
-   Jeu(unsigned hauteur, unsigned largeur, unsigned nbreRobot, unsigned posDepartX = 0,unsigned posDepartY = 0 );
+   Jeu(unsigned hauteur, unsigned largeur, unsigned nbreRobot);
 
    /// Nom                 demmarrer
    /// But
    void demmarer();
 
 private:
-   const unsigned hauteur, largeur, posDepartX, posDepartY;
+   const unsigned hauteur, largeur;
    std::vector<Robot> robots;
    std::vector<std::string> rapport;
 
@@ -54,14 +54,16 @@ private:
    ///                     robot donné
    /// \param r            Robot dont la direction doit être vérifiée
    /// \param direction    Direction à vérifier
+   /// \param distance     Distance de déplacement du robot
    /// \return             Retourne vrai si la direction est valide, faux sinon
    bool directionValide(const Robot& robot, Coordonnee::Direction direction, unsigned distance = 1) const;
 
    /// Nom                 directionUtilisable
    /// But                 Obtenir une direction utilisable par le robot
    /// \param robot        Robot dont une direction utilisable doit être détérminée
+   /// \param distance     Distance de déplacement du robot
    /// \return             Direction utilisable
-   Coordonnee::Direction directionUtilisable (const Robot& robot) const;
+   Coordonnee::Direction directionUtilisable (const Robot& robot, unsigned distance = 1) const;
 
    /// Nom                 affichageJeu
    /// But                 Afficher le jeu

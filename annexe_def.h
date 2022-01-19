@@ -45,13 +45,3 @@ T saisir(T min, T max, const std::string& messageSaisie, const std::string& mess
 
    return saisie;
 }
-
-template <typename T>
-T  aleatoire(T min, T max){
-   static bool init = true;
-   if(init){
-      srand(time(NULL));
-      init = false;
-   }
-   return (rand()%(max-min))+min;
-}

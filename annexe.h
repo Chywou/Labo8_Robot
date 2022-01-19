@@ -41,9 +41,12 @@ void pause(const std::string& message = "Veillez presser ENTRER pour quitter");
 template <typename T>
 T  saisir(T min, T max, const std::string& messageSaisie,const std::string& messageErreur);
 
-
-template <typename T>
-T  aleatoire(T min, T max);
+/// Nom                     aleatoire
+/// But                     Générer un nombre aléatoire
+/// \param min              Valeur min du nombre aléatoire
+/// \param max              Valeur max non comprise du nombre aléatoire
+/// \return                 Valeur générée aléatoirement
+unsigned aleatoire(unsigned min, unsigned max);
 
 
 #include "annexe_def.h"
