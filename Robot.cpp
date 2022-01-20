@@ -8,7 +8,6 @@ Description    : Définitiion de la classe Robot.
 
 Remarque(s)    :
 
-
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
@@ -24,20 +23,20 @@ Robot& Robot::operator=(const Robot& robot) {
    return *this;
 }
 
-bool Robot::memeEmplacement(const Robot& robot) {
+bool Robot::memeEmplacement(const Robot& robot) const {
   return memeEmplacement(robot.coordonnee) && id != robot.id ;
 }
 
-bool Robot::memeEmplacement(const Coordonnee& coordonnee) {
+bool Robot::memeEmplacement(const Coordonnee& coordonnee) const {
    return this->coordonnee == coordonnee;
-}
-
-unsigned int Robot::getId() const {
-   return id;
 }
 
 void Robot::deplacement(Coordonnee::Direction direction, unsigned int distance) {
    coordonnee.deplacement(direction, distance);
+}
+
+unsigned Robot::getId() const {
+   return id;
 }
 
 Coordonnee Robot::getCoordonnee() const {
