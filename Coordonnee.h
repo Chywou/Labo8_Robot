@@ -5,10 +5,9 @@ Nom du labo    : Labo 08 : Survivor
 Auteur(s)      : Laetitia Guidetti et Tim Ernst
 Date creation  : 14.01.2022
 Description    : Déclaration de la classe Coordonnee. Elle permet la gestion des
-                 coordonnées des objets de la classe Robot.
+                 coordonnées d'objets.
 
 Remarque(s)    :
-
 
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
@@ -18,7 +17,9 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 #define LABO8_ROBOT_COORDONNEE_H
 
 class Coordonnee {
+
 public:
+
    enum class Direction {HAUT, BAS, GAUCHE, DROITE};
 
    /// Nom                 Coordonnee
@@ -29,7 +30,7 @@ public:
 
    /// Nom                 operator==
    /// But                 Détérminer si deux Coordonnee sont égales
-   /// \param coor         Coordonnee à comparer
+   /// \param coordonnee   Coordonnee à comparer
    /// \return             Retourne vrai si les deux coordonne sont égales, sinon faux
    bool operator==(const Coordonnee& coordonnee) const;
 
@@ -41,16 +42,16 @@ public:
 
    /// Nom                 getX
    /// But                 Retourner la position x
-   /// \return             retourne x
+   /// \return             retourne la donnée membre x
    unsigned getX() const;
 
-   /// Nom                 Y
+   /// Nom                 getY
    /// But                 Retourner la position y
-   /// \return             retourne y
+   /// \return             retourne la donnée membre  y
    unsigned getY() const;
 
    /// Nom                 getNbrDirection
-   /// But                 retourner le nombre de direction possible pour une coordonnée
+   /// But                 retourner le nombre de directions possible pour une Coordonnee
    /// \return             retourne NBRE_DIRECTION
    static unsigned getNbrDirection();
 
@@ -58,7 +59,8 @@ private:
    unsigned x;
    unsigned y;
 
-   static const unsigned NBRE_DIRECTION;  // Nombre de directions que le robot peut se deplacer
+   // Nombre de directions de déplacement possibles
+   static const unsigned NBRE_DIRECTION;
 };
 
 

@@ -4,10 +4,10 @@ Nom du fichier : annexe.h
 Nom du labo    : Labo 08 : Survivor
 Auteur(s)      : Laetitia Guidetti et Tim Ernst
 Date creation  : 14.01.2022
-Description    :
+Description    : Fichier annexe contenant des fonctions réutilisables dans divers
+                 contexte comme de l'aléatoire ou une fonctions de saisie.
 
 Remarque(s)    :
-
 
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
@@ -18,8 +18,6 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 
 #include <string>    // Utilisation de string
 
-
-
 /// Nom             viderBuffer
 /// But             Permet de vider le buffer cin
 void viderBuffer();
@@ -29,10 +27,17 @@ void viderBuffer();
 /// \param message
 void pause(const std::string& message = "Veillez presser ENTRER pour quitter");
 
+/// Nom                     aleatoire
+/// But                     Générer un nombre aléatoire
+/// \param min              Valeur min du nombre aléatoire
+/// \param max              Valeur max non comprise du nombre aléatoire
+/// \return                 Valeur générée aléatoirement
+int aleatoire(int min, int max);
+
 /// Nom                     Saisie
 /// But                     Permet de récupérer une saisie d'utilisateur contrôlée
 ///                         entre une valeur min et max comprises.
-/// \tparam T
+/// \tparam T               Type utilisé
 /// \param min              Valeur minimale comprise
 /// \param max              Valeur maximale comprise
 /// \param messageSaisie    Message à afficher lors de la saisie
@@ -40,14 +45,6 @@ void pause(const std::string& message = "Veillez presser ENTRER pour quitter");
 /// \return                 Retourne la valeur saisie de l'utilisateur de type T
 template <typename T>
 T  saisir(T min, T max, const std::string& messageSaisie,const std::string& messageErreur);
-
-/// Nom                     aleatoire
-/// But                     Générer un nombre aléatoire
-/// \param min              Valeur min du nombre aléatoire
-/// \param max              Valeur max non comprise du nombre aléatoire
-/// \return                 Valeur générée aléatoirement
-unsigned aleatoire(unsigned min, unsigned max);
-
 
 #include "annexe_def.h"
 
