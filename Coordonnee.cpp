@@ -11,6 +11,7 @@ Remarque(s)    :
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
+
 #include "Coordonnee.h"
 
 const unsigned Coordonnee::NBRE_DIRECTION   = 4;

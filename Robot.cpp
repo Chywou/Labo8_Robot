@@ -11,6 +11,7 @@ Remarque(s)    :
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
+
 #include "Robot.h"
 
 Robot::Robot(const Coordonnee& coordonnee, unsigned id): coordonnee(coordonnee), id(id) {}

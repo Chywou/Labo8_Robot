@@ -11,6 +11,7 @@ Remarque(s)    :
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
+
 #include <iostream>  // cout
 #include <thread>    // sleep_for
 #include <cassert>   // assert
