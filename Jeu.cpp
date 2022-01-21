@@ -62,7 +62,7 @@ Jeu::Jeu(unsigned hauteur, unsigned largeur, unsigned nbreRobot) :
                                             (unsigned)aleatoire(0,(int)hauteur));
 
          // Vérifie que les coordonnées ne sont pas déjà occupées par un autre robot
-         if(!coordonneeUtilise(coordonnee)) {
+         if(robots.end() == find(robots.begin(), robots.end(), coordonnee)) {
             robots.emplace_back(coordonnee, i);
             coordonneeUnique = false;
          }
@@ -80,19 +80,16 @@ void Jeu::lancementJeu() {
          // Déplacement du robot dans une direction aléatoire
          robot->deplacement(directionUtilisable(*robot));
 
-         for (vector<Robot>::iterator it = robots.begin(); it < robots.end(); ++it) {
-            // Vérifie si le robot en se déplacant a mangé un autre robot ou non
-            if(robot->memeEmplacement(*it)){
-               rapport.push_back(to_string(robot->getId()) +
-                                 " a tue " + to_string(it->getId()));
-               robots.erase(it);
+         vector<Robot>::iterator it = find(robots.begin(), robots.end(), *robot);
 
-               if(distance(it, robot) > 0) {
-                  // Permet d'éviter que le tour d'un robot soit sauté dans le cas où
-                  // le robot mangueur est situé après le robot mangé
-                  --robot;
-               }
-               break; // Il n'est pas possible de manger plus d'un robot par déplacement
+         if(it != robots.end()) {
+            rapport.push_back(to_string(robot->getId()) +
+                              " a tue " + to_string(it->getId()));
+            robots.erase(it);
+            if(distance(it, robot) > 0) {
+               // Permet d'éviter que le tour d'un robot soit sauté dans le cas où
+               // le robot mangueur est situé après le robot mangé
+               --robot;
             }
          }
       }
@@ -101,20 +98,11 @@ void Jeu::lancementJeu() {
       system("cls");
 
       affichageJeu();
-
+   
       this_thread::sleep_for(200ms);
    } while (robots.size() > 1);
 
    cout << robots[0].getId() << " a gagne !" << endl;
-}
-
-bool Jeu::coordonneeUtilise(const Coordonnee& coordonnee) const {
-   for(const Robot& r: robots) {
-      if(r.memeEmplacement(coordonnee)) {
-         return true;
-      }
-   }
-   return false;
 }
 
 bool Jeu::directionValide(const Robot& robot, Coordonnee::Direction direction,

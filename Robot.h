@@ -36,19 +36,19 @@ public:
    /// \return             Le robot copié
    Robot& operator=(const Robot& robot);
 
-   /// Nom                 memeEmplacement
+   /// Nom                 operator==
    /// But                 Détérminer si le robot passé en paramètre est situé à la
    ///                     même position que le robot implicite
    /// \param robot        Le robot à comparer
    /// \return             Vrai si les 2 robots sont sur les même coordonnées, faux sinon
-   bool memeEmplacement (const Robot& robot) const;
+   bool operator==(const Robot& robot) const;
 
-   /// Nom                 memeEmplacement
+   /// Nom                 operator==
    /// But                 Détérminer si les coordonnée passée en paramètre sont
    ///                     identiques au coordonnée du robot implicite
    /// \param coordonne    Coordonnée à comparer
    /// \return             Vrai si les coordonnées sont identiques au robot, faux sinon
-   bool memeEmplacement (const Coordonnee& coordonnee) const;
+   bool operator==(const Coordonnee& coordonnee) const;
 
    /// Nom                 deplacement
    /// But                 Déplacer le robot d'une distance détérminée dans une direction

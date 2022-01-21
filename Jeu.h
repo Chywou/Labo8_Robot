@@ -51,12 +51,6 @@ private:
    std::vector<Robot> robots;
    std::vector<std::string> rapport;
 
-   /// Nom                 coordonneeUtilise
-   /// But                 Détériminée si des coordonnées sont déjà utilisée par un robot
-   /// \param coordonnee   Coordonnnee à vérifier
-   /// \return             Returne vrai si un Robot est déjà présent sur coordonnee
-   bool coordonneeUtilise(const Coordonnee& coordonnee) const;
-
    /// Nom                 directionValide
    /// But                 Détérminer si une direction fournie est valide pour un
    ///                     robot donné

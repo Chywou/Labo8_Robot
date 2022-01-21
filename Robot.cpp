@@ -24,11 +24,11 @@ Robot& Robot::operator=(const Robot& robot) {
    return *this;
 }
 
-bool Robot::memeEmplacement(const Robot& robot) const {
-  return memeEmplacement(robot.coordonnee) && id != robot.id ;
+bool Robot::operator==(const Robot& robot) const {
+  return coordonnee == robot.coordonnee && id != robot.id ;
 }
 
-bool Robot::memeEmplacement(const Coordonnee& coordonnee) const {
+bool Robot::operator==(const Coordonnee& coordonnee) const {
    return this->coordonnee == coordonnee;
 }
 
