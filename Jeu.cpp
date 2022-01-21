@@ -15,6 +15,7 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 #include <iostream>  // cout
 #include <thread>    // sleep_for
 #include <cassert>   // assert
+#include <algorithm> // find
 #include "annexe.h"  // aleatoire
 #include "Jeu.h"
 
@@ -98,7 +99,7 @@ void Jeu::lancementJeu() {
       system("cls");
 
       affichageJeu();
-   
+
       this_thread::sleep_for(200ms);
    } while (robots.size() > 1);
 
